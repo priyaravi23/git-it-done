@@ -16,7 +16,7 @@ var getUserRepos = function(user) {
                     displayRepos(data, user);
                 });
             } else {
-                alert("Error: " + response.statusText);
+                alert(`Error: ${response.statusText}`);
             }
         })
         .catch(function(error) {
