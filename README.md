@@ -13,3 +13,7 @@ https://priyaravi23.github.io/git-it-done/
 *The following image shows the web application's appearance and functionality:*
 
 ![](assets/images/mock-up.jpg)
+
+### Application Demo
+
+![](assets/images/git-it-done.gif)

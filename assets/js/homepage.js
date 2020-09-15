@@ -39,15 +39,15 @@ var formSubmitHandler = function(event) {
 };
 
 var displayRepos = function(repos, searchTerm) {
-    // check if api returned any repos
+
     if (repos.length === 0) {
         repoContainerEl.textContent = "No repositories found.";
         return;
     }
 
-    // clear old content
-    repoContainerEl.textContent = "";
     repoSearchTerm.textContent = searchTerm;
+
+    repoContainerEl.textContent = "";
 
     // loop over repos
     for (var i = 0; i < repos.length; i++) {
@@ -80,11 +80,24 @@ var displayRepos = function(repos, searchTerm) {
 
         // append to container
         repoEl.appendChild(statusEl);
+
         // append container to the dom
         repoContainerEl.appendChild(repoEl);
     }
 };
 
-// getUserRepos('facebook');
-// getUserRepos('priyaravi23');
+var getFeaturedRepos = function(language) {
+    var apiUrl = "https://api.github.com/search/repositories?q=" + language + "+is:featured&sort=help-wanted-issues";
+
+    fetch(apiUrl).then(function(response) {
+        if (response.ok) {
+            response.json().then(function(data) {
+                displayRepos(data.items, language);
+            });
+        } else {
+            alert("Error: " + response.statusText);
+        }
+    });
+};
+
 userFormEl.addEventListener("submit", formSubmitHandler);
